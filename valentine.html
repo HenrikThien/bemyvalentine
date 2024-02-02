@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Will you be my Valentine?</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            overflow: hidden;
+            background-color: #f7f7f7;
+            font-family: 'Arial', sans-serif;
+            transition: background-color 1s ease;
+        }
+
+        #valentine-container {
+            text-align: center;
+        }
+
+        #valentine-title {
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        #valentine-image {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            overflow: hidden;
+            position: relative;
+            margin-bottom: 20px;
+            transition: width 1s ease, height 1s ease;
+        }
+
+        #overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(rgba(255, 182, 193, 0.5), rgba(255, 182, 193, 0.5));
+        }
+
+        #buttons-container {
+            display: flex;
+            gap: 10px;
+        }
+
+        img {
+            mask:
+                radial-gradient(at 70% 31%,#000 29%,#0000 30%),
+                radial-gradient(at 30% 31%,#000 29%,#0000 30%),
+                linear-gradient(#000 0 0) bottom/100% 50% no-repeat;
+            clip-path: polygon(-41% 0,50% 91%, 141% 0);
+        }
+
+        .button {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: bold;
+            color: #fff;
+        }
+
+        #yes-button {
+            background-color: #4caf50;
+        }
+
+        #no-button {
+            background-color: #e74c3c;
+        }
+
+        #ily-text {
+            font-size: 72px;
+            font-weight: bold;
+            margin-top: 20px;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div id="valentine-container">
+        <div id="valentine-title">Will you be my Valentine?</div>
+        
+        <div id="valentine-image">
+            <img src="itsus.jpg" style="object-fit: cover; width: 190px; height: 220px;" />
+        </div>
+
+        <div id="buttons-container">
+            <button id="yes-button" class="button" onclick="fillScreen()">YES</button>
+            <button id="no-button" class="button" onclick="changeButtonText()">Maybe?</button>
+        </div>  
+
+        <div id="ily-text">ILY</div>
+    </div>
+
+    <script>
+        function changeButtonText() {
+            var texts = [
+                "Think about it again",
+                "Maybe you want to try again",
+                "Give it another thought",
+                "Consider one more time",
+                "Reflect on it",
+                "Is there a chance?",
+                "Reevaluate your decision",
+                "Ponder once more",
+                "Contemplate your answer",
+                "Could it be a yes?",
+                "Explore your feelings",
+                "Is there room for a yes?",
+                "Give your heart a voice",
+                "Consider the possibilities",
+                "Reassess your choice",
+                "Deliberate a bit more",
+                "Could it turn into a yes?",
+                "Reflect on your emotions",
+                "Reconsider your decision",
+                "Maybe it's a yes"
+            ];
+
+            var randomIndex = Math.floor(Math.random() * texts.length);
+            document.getElementById("no-button").innerHTML = texts[randomIndex];
+        }
+
+        function fillScreen() {
+            // Change background color to indicate filling effect
+            document.body.style.backgroundColor = '#fff';
+
+            // Expand the image box to cover the entire screen
+            var valentineImage = document.getElementById('valentine-image');
+            valentineImage.style.width = '25vw';
+            valentineImage.style.height = '25vh';
+
+            var ilyText = document.getElementById('ily-text');
+            ilyText.style.display = 'block';
+
+            // Disable further button clicks
+            var buttonsContainer = document.getElementById('buttons-container');
+            buttonsContainer.style.display = 'none';
+        }
+    </script>
+</body>
+</html>
