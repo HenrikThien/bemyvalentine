@@ -27,6 +27,7 @@
             font-weight: bold;
             margin-bottom: 20px;
             color: #333;
+            transition: transform 1s ease;
         }
 
         #valentine-image {
@@ -36,7 +37,7 @@
             overflow: hidden;
             position: relative;
             margin-bottom: 20px;
-            transition: width 1s ease, height 1s ease;
+            transition: transform 1s ease;
         }
 
         #overlay {
@@ -83,7 +84,20 @@
             font-size: 72px;
             font-weight: bold;
             margin-top: 20px;
-            display: none;
+            opacity: 0; /* Initially hide ILY text */
+            visibility: hidden;
+            transition: opacity 1s ease, transform 1s ease;
+        }
+
+        @keyframes slideInFromLeft {
+            0% {
+                opacity: 0;
+                transform: translateX(-100%);
+            }
+            100% {
+                opacity: 1;
+                transform: translateX(0);
+            }
         }
     </style>
 </head>
@@ -100,7 +114,7 @@
             <button id="no-button" class="button" onclick="changeButtonText()">Maybe?</button>
         </div>  
 
-        <div id="ily-text">ILY</div>
+        <div id="ily-text" style="visibility: hidden;">ILY</div>
     </div>
 
     <script>
@@ -133,20 +147,22 @@
         }
 
         function fillScreen() {
-            // Change background color to indicate filling effect
-            document.body.style.backgroundColor = '#fff';
-
-            // Expand the image box to cover the entire screen
-            var valentineImage = document.getElementById('valentine-image');
-            valentineImage.style.width = '25vw';
-            valentineImage.style.height = '25vh';
-
-            var ilyText = document.getElementById('ily-text');
-            ilyText.style.display = 'block';
-
-            // Disable further button clicks
+            // Hide buttons
             var buttonsContainer = document.getElementById('buttons-container');
             buttonsContainer.style.display = 'none';
+
+            var title = document.getElementById('valentine-title');
+            title.style.transform = 'translateY(-5vh)';
+
+            // Float the image box up
+            var valentineImage = document.getElementById('valentine-image');
+            valentineImage.style.transform = 'translateY(-5vh)';
+
+            // Display "ILY" text with fade-in and slide-in effect
+            var ilyText = document.getElementById('ily-text');
+            ilyText.style.visibility = 'visible';
+            ilyText.style.opacity = 1;
+            ilyText.style.animation = 'slideInFromLeft 1s ease';
         }
     </script>
 </body>
